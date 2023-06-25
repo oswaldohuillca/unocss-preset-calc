@@ -6,7 +6,12 @@
   "main": "./dist/presetCalc.js",
   "types": "./dist/presetCalc.d.ts",
   "type": "module",
-  "keywords": [],
+  "keywords": [
+    "unocss",
+    "calc",
+    "css",
+    "framework"
+  ],
   "author": "Oswaldo <oswaldohuillca@gmail.com>",
   "repository": {
     "type": "git",
@@ -22,10 +27,9 @@
   "scripts": {
     "build": "npx tsc"
   },
-  "dependencies": {
-    "@unocss/core": "^0.53.3"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@unocss/core": "^0.53.3",
     "typescript": "^5.1.3"
   }
 }
