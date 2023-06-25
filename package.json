@@ -1,7 +1,7 @@
 {
   "name": "unocss-preset-calc",
   "version": "0.0.1",
-  "homepage": "",
+  "homepage": "https://github.com/oswaldohuillca/unocss-preset-calc",
   "description": "",
   "main": "./dist/presetCalc.js",
   "types": "./dist/presetCalc.d.ts",
@@ -10,21 +10,21 @@
   "author": "Oswaldo <oswaldohuillca@gmail.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/oswaldohuillca/unocss-preset-calc"
   },
   "exports": {
     ".": {
-      "types": "./dist/presetCalc.d.ts",
-      "require": "./dist/presetCalc.cjs",
-      "import": "./dist/presetCalc.mjs"
+      "types": "./dist/presetCalc.d.ts"
     }
   },
   "license": "MIT",
   "scripts": {
     "dev": "npx tsnd --respawn src/presetCalc.ts"
   },
+  "dependencies": {
+    "@unocss/core": "^0.53.3"
+  },
   "devDependencies": {
-    "@unocss/core": "^0.53.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.1.3"
   }
