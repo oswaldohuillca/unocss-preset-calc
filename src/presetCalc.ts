@@ -1,8 +1,17 @@
 import type { Preset, Rule } from '@unocss/core'
 
 interface Options {
+  /**
+   * @default 0
+   */
   min?: number
+  /**
+   * @default 1920
+   */
   max?: number
+  /**
+   * @default '--width-screen'
+   */
   golbalVar?: string
 }
 
