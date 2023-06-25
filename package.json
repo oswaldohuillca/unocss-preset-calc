@@ -14,18 +14,18 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/presetCalc.d.ts"
+      "types": "./dist/presetCalc.d.ts",
+      "import": "./dist/presetCalc.js"
     }
   },
   "license": "MIT",
   "scripts": {
-    "dev": "npx tsnd --respawn src/presetCalc.ts"
+    "build": "npx tsc"
   },
   "dependencies": {
     "@unocss/core": "^0.53.3"
   },
   "devDependencies": {
-    "ts-node-dev": "^2.0.0",
     "typescript": "^5.1.3"
   }
 }
