@@ -1,11 +1,31 @@
 # unocss-preset-calc
 
-unocss-preset-calc is a [UnoCSS](https://unocss.dev/) plugin for working with the CSS calc property
+unocss-preset-calc is a [UnoCSS](https://unocss.dev/) plugin for working with the CSS calc property.
+
+![Figma UI design](./images/design.png)
+
+```html
+<!-- Your html -->
+<section>
+  <div class="w-256 h-322 rounded-21 bg-sky-400 ...">
+    <!-- another html tag -->
+  </div>
+  <div class="w-256 h-322 rounded-21 ...">
+    <!-- another html tag -->
+  </div>
+</section>
+```
 
 ```css
-/*Example*/
-.foo {
-  width: calc(250 * clamp(375px,100vw,1920px) / var(--width-screen))
+/* css output */
+.w-256 {
+  width: calc(256 * clamp(0px,100vw,1920px) / var(--width-screen));
+}
+.h-322 {
+  height: calc(322 * clamp(0px,100vw,1920px) / var(--width-screen));
+}
+.rounded-21 {
+  border-radius: calc(21 * clamp(0px,100vw,1920px) / var(--width-screen));
 }
 ```
 
@@ -18,7 +38,7 @@ pnpm add unocss-preset-calc -D # with pnpm
 ```
 
 ```css
-/*main.css*/
+/* main.css */
 :root {
   --width-screen: 375
 }
@@ -57,6 +77,6 @@ interface Options {
   /**
    * @default '--width-screen'
    */
-  golbalVar?: string
+  CSSglobalVar?: string
 }
 ```

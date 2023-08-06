@@ -12,11 +12,11 @@ interface Options {
   /**
    * @default '--width-screen'
    */
-  golbalVar?: string
+  CSSglobalVar?: string
 }
 
 const calculate = (value: string, options: Options): string => {
-  return `calc(${value} * clamp(${options.min}px,100vw,${options.max}px) / var(${options.golbalVar}))`
+  return `calc(${value} * clamp(${options.min}px,100vw,${options.max}px) / var(${options.CSSglobalVar}))`
 }
 
 const setProperties = (value: string, properties: string | string[], options: Options) => {
@@ -38,7 +38,7 @@ export const presetCalc = (defaultValues?: Options): Preset => {
   const options: Options = {
     min: 0,
     max: 1920,
-    golbalVar: '--width-screen',
+    CSSglobalVar: '--width-screen',
     ...defaultValues
   }
 
@@ -59,8 +59,8 @@ export const presetCalc = (defaultValues?: Options): Preset => {
 
       //Gap
       createRule(/^gap-([\.\d]+)$/, 'gap', options),
-      createRule(/^gap-x-([\.\d]+)$/, 'row-gap', options),
-      createRule(/^gap-y-([\.\d]+)$/, 'column-gap', options),
+      createRule(/^gap-x-([\.\d]+)$/, 'column-gap', options),
+      createRule(/^gap-y-([\.\d]+)$/, 'row-gap', options),
 
       //border-radius
       createRule(/^rounded-([\.\d]+)$/, 'border-radius', options),
