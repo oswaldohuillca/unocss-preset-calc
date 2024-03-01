@@ -30,8 +30,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@unocss/core": "^0.53.3",
+    "@unocss/core": "^0.58.5",
     "release-it": "^17.1.1",
-    "typescript": "^5.1.3"
+    "typescript": "^5.3.3"
   }
 }
