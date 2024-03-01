@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.0.5](https://github.com/oswaldohuillca/unocss-preset-calc/compare/0.0.4...0.0.5) (2024-3-1)
+
 ## 0.0.4 (2024-3-1)
 
 
