@@ -56,11 +56,21 @@ export const presetCalc = (defaultValues?: Options): Preset => {
       createRule(/^h-([\.\d]+)$/, 'height', options),
       createRule(/^max-h-([\.\d]+)$/, 'max-height', options),
       createRule(/^min-h-([\.\d]+)$/, 'min-height', options),
+      createRule(/^size-([\.\d]+)$/, ['width', 'height'], options),
 
       //Gap
       createRule(/^gap-([\.\d]+)$/, 'gap', options),
       createRule(/^gap-x-([\.\d]+)$/, 'column-gap', options),
       createRule(/^gap-y-([\.\d]+)$/, 'row-gap', options),
+
+      //border
+      createRule(/^border-([\.\d]+)$/, 'border-width', options),
+      createRule(/^border-t-([\.\d]+)$/, 'border-top-width', options),
+      createRule(/^border-r-([\.\d]+)$/, 'border-right-width', options),
+      createRule(/^border-b-([\.\d]+)$/, 'border-bottom-width', options),
+      createRule(/^border-l-([\.\d]+)$/, 'border-left-width', options),
+      createRule(/^border-y-([\.\d]+)$/, ['order-top-width', 'border-bottom-width'], options),
+      createRule(/^border-x-([\.\d]+)$/, ['order-left-width', 'border-right-width'], options),
 
       //border-radius
       createRule(/^rounded-([\.\d]+)$/, 'border-radius', options),

@@ -10,7 +10,7 @@
     "unocss",
     "calc",
     "css",
-    "framework"
+    "pixel-perfect"
   ],
   "author": "Oswaldo <oswaldohuillca@gmail.com>",
   "repository": {
@@ -26,7 +26,7 @@
   "license": "MIT",
   "scripts": {
     "build": "npx tsc",
-    "release": "bunx release-it"
+    "release": "bun run build && bunx release-it"
   },
   "dependencies": {},
   "devDependencies": {
