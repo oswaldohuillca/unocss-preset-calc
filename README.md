@@ -38,12 +38,13 @@ pnpm add unocss-preset-calc -D # with pnpm
 ```
 
 ```css
+
 /* main.css */
 :root {
   --width-screen: 375
 }
 
-@media screen (min-width: 768px) {
+@media (width >= 768px) {
   :root {
     --width-screen: 1920
   }
