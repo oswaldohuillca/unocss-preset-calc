@@ -26,7 +26,7 @@
   "license": "MIT",
   "scripts": {
     "build": "npx tsc",
-    "release": "bun run build && bunx release-it"
+    "release": "bunx release-it"
   },
   "dependencies": {},
   "devDependencies": {
