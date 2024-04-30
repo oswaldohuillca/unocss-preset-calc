@@ -1,6 +1,6 @@
 import { defineConfig } from 'unocss'
 import presetUno from '@unocss/preset-uno'
-import { presetCalc } from '../src/presetCalc'
+import { presetCalc } from '../src/preset-calc'
 
 export default defineConfig({
   // ...UnoCSS options

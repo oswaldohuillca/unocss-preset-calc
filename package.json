@@ -19,8 +19,8 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/presetCalc.d.ts",
-      "import": "./dist/presetCalc.js"
+      "types": "./dist/preset-calc.d.ts",
+      "import": "./dist/preset-calc.js"
     }
   },
   "license": "MIT",
