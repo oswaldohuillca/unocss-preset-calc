@@ -1,4 +1,4 @@
-import type { Preset, Rule } from '@unocss/core'
+import type { Preset, Rule } from 'unocss'
 
 interface Options {
   /**
@@ -13,6 +13,16 @@ interface Options {
    * @default '--width-screen'
    */
   CSSglobalVar?: string
+
+  /**
+   * @default 375
+   */
+  mobileBreakpoint?: number
+
+  /**
+  * @default 768
+  */
+  desktopBreakpoint?: number
 }
 
 const calculate = (value: string, options: Options): string => {
@@ -36,14 +46,32 @@ const createRule = (test: RegExp, properties: string | string[], options: Option
 
 export const presetCalc = (defaultValues?: Options): Preset => {
   const options: Options = {
+    CSSglobalVar: '--width-screen',
     min: 0,
     max: 1920,
-    CSSglobalVar: '--width-screen',
+    mobileBreakpoint: 375,
+    desktopBreakpoint: 768,
     ...defaultValues
   }
 
   return {
     name: 'unocss-preset-calc',
+    preflights: [
+      {
+        getCSS: () => {
+          return `
+            :root {
+              ${options.CSSglobalVar}: ${options.mobileBreakpoint};
+            }
+            @media (width >=${options.desktopBreakpoint}px) {
+              :root {
+                ${options.CSSglobalVar}: ${options.max};
+              }
+            }
+          `
+        }
+      }
+    ],
     rules: [
 
       //Text
@@ -106,6 +134,6 @@ export const presetCalc = (defaultValues?: Options): Preset => {
       createRule(/^pb-([\.\d]+)$/, 'padding-bottom', options),
       createRule(/^px-([\.\d]+)$/, ['padding-left', 'padding-right'], options),
       createRule(/^py-([\.\d]+)$/, ['padding-top', 'padding-bottom'], options),
-    ]
+    ],
   }
 }

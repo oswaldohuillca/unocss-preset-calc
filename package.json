@@ -28,13 +28,12 @@
     "build": "tsc",
     "release": "release-it"
   },
-  "dependencies": {},
   "devDependencies": {
     "@release-it/conventional-changelog": "^8.0.1",
     "release-it": "^17.1.1",
     "typescript": "^5.4.5"
   },
   "peerDependencies": {
-    "@unocss/core": "^0.59.4"
+    "unocss": "^0.59.4"
   }
 }
