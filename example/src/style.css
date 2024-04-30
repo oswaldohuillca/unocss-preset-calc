@@ -1,0 +1,9 @@
+:root {
+  --width-screen: 375
+}
+
+@media (width >=768px) {
+  :root {
+    --width-screen: 1920
+  }
+}
