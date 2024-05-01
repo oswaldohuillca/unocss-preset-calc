@@ -37,20 +37,6 @@ yarn add unocss-preset-calc -D # with yarn
 pnpm add unocss-preset-calc -D # with pnpm
 ```
 
-```css
-
-/* main.css */
-:root {
-  --width-screen: 375
-}
-
-@media (width >= 768px) {
-  :root {
-    --width-screen: 1920
-  }
-}
-```
-
 ```typescript
 // unocss.config.js
 import { presetUno, defineConfig } from 'unocss'
@@ -79,5 +65,13 @@ interface Options {
    * @default '--width-screen'
    */
   CSSglobalVar?: string
+  /**
+  * @default 375
+  */
+  mobileBreakpoint?: number
+  /**
+  * @default 768
+  */
+  desktopBreakpoint?: number
 }
 ```
