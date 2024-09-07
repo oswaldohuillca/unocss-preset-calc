@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.7](https://github.com/oswaldohuillca/unocss-preset-calc/compare/0.0.6...0.0.7) (2024-09-07)
+
+
+### Bug Fixes
+
+* peer dependency unocss ([e58d7c7](https://github.com/oswaldohuillca/unocss-preset-calc/commit/e58d7c7a7785f4cbef5a1d94161e940b49bd8824))
+
 ## [0.0.6](https://github.com/oswaldohuillca/unocss-preset-calc/compare/0.0.5...0.0.6) (2024-04-30)
 
 ## [0.0.5](https://github.com/oswaldohuillca/unocss-preset-calc/compare/0.0.4...0.0.5) (2024-3-1)
