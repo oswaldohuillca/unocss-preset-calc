@@ -26,12 +26,14 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "release": "release-it"
+    "release": "release-it",
+    "test": "vitest"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^8.0.1",
     "release-it": "^17.1.1",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "2.0.5"
   },
   "peerDependencies": {
     "unocss": ">=0.59.4 <1.0.0"

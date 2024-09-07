@@ -25,7 +25,7 @@ interface Options {
   desktopBreakpoint?: number
 }
 
-const calculate = (value: string, options: Options): string => {
+export const calculate = (value: string, options: Options): string => {
   return `calc(${value} * clamp(${options.min}px,100vw,${options.max}px) / var(${options.CSSglobalVar}))`
 }
 
@@ -39,18 +39,21 @@ const setProperties = (value: string, properties: string | string[], options: Op
   throw new Error('properties must be string or string[]')
 }
 
-const createRule = (test: RegExp, properties: string | string[], options: Options): Rule => {
+export const createRule = (test: RegExp, properties: string | string[], options: Options): Rule => {
   return [test, ([_, num]) => setProperties(num, properties, options)]
 }
 
+export const options: Options = {
+  CSSglobalVar: '--width-screen',
+  min: 0,
+  max: 1920,
+  mobileBreakpoint: 375,
+  desktopBreakpoint: 768
+}
 
 export const presetCalc = (defaultValues?: Options): Preset => {
-  const options: Options = {
-    CSSglobalVar: '--width-screen',
-    min: 0,
-    max: 1920,
-    mobileBreakpoint: 375,
-    desktopBreakpoint: 768,
+  const presetOptions: Options = {
+    ...options,
     ...defaultValues
   }
 
@@ -75,65 +78,65 @@ export const presetCalc = (defaultValues?: Options): Preset => {
     rules: [
 
       //Text
-      createRule(/^text-([\.\d]+)$/, 'font-size', options),
-      createRule(/^leading-([\.\d]+)$/, 'line-height', options),
+      createRule(/^text-([\.\d]+)$/, 'font-size', presetOptions),
+      createRule(/^leading-([\.\d]+)$/, 'line-height', presetOptions),
 
-      createRule(/^w-([\.\d]+)$/, 'width', options),
-      createRule(/^max-w-([\.\d]+)$/, 'max-width', options),
-      createRule(/^min-w-([\.\d]+)$/, 'min-width', options),
-      createRule(/^h-([\.\d]+)$/, 'height', options),
-      createRule(/^max-h-([\.\d]+)$/, 'max-height', options),
-      createRule(/^min-h-([\.\d]+)$/, 'min-height', options),
-      createRule(/^size-([\.\d]+)$/, ['width', 'height'], options),
+      createRule(/^w-([\.\d]+)$/, 'width', presetOptions),
+      createRule(/^max-w-([\.\d]+)$/, 'max-width', presetOptions),
+      createRule(/^min-w-([\.\d]+)$/, 'min-width', presetOptions),
+      createRule(/^h-([\.\d]+)$/, 'height', presetOptions),
+      createRule(/^max-h-([\.\d]+)$/, 'max-height', presetOptions),
+      createRule(/^min-h-([\.\d]+)$/, 'min-height', presetOptions),
+      createRule(/^size-([\.\d]+)$/, ['width', 'height'], presetOptions),
 
       //Gap
-      createRule(/^gap-([\.\d]+)$/, 'gap', options),
-      createRule(/^gap-x-([\.\d]+)$/, 'column-gap', options),
-      createRule(/^gap-y-([\.\d]+)$/, 'row-gap', options),
+      createRule(/^gap-([\.\d]+)$/, 'gap', presetOptions),
+      createRule(/^gap-x-([\.\d]+)$/, 'column-gap', presetOptions),
+      createRule(/^gap-y-([\.\d]+)$/, 'row-gap', presetOptions),
 
       //border
-      createRule(/^border-([\.\d]+)$/, 'border-width', options),
-      createRule(/^border-t-([\.\d]+)$/, 'border-top-width', options),
-      createRule(/^border-r-([\.\d]+)$/, 'border-right-width', options),
-      createRule(/^border-b-([\.\d]+)$/, 'border-bottom-width', options),
-      createRule(/^border-l-([\.\d]+)$/, 'border-left-width', options),
-      createRule(/^border-y-([\.\d]+)$/, ['order-top-width', 'border-bottom-width'], options),
-      createRule(/^border-x-([\.\d]+)$/, ['order-left-width', 'border-right-width'], options),
+      createRule(/^border-([\.\d]+)$/, 'border-width', presetOptions),
+      createRule(/^border-t-([\.\d]+)$/, 'border-top-width', presetOptions),
+      createRule(/^border-r-([\.\d]+)$/, 'border-right-width', presetOptions),
+      createRule(/^border-b-([\.\d]+)$/, 'border-bottom-width', presetOptions),
+      createRule(/^border-l-([\.\d]+)$/, 'border-left-width', presetOptions),
+      createRule(/^border-y-([\.\d]+)$/, ['order-top-width', 'border-bottom-width'], presetOptions),
+      createRule(/^border-x-([\.\d]+)$/, ['order-left-width', 'border-right-width'], presetOptions),
 
       //border-radius
-      createRule(/^rounded-([\.\d]+)$/, 'border-radius', options),
-      createRule(/^rounded-tl-([\.\d]+)$/, 'border-top-left-radius', options),
-      createRule(/^rounded-tr-([\.\d]+)$/, 'border-top-right-radius', options),
-      createRule(/^rounded-bl-([\.\d]+)$/, 'border-bottom-left-radius', options),
-      createRule(/^rounded-br-([\.\d]+)$/, 'border-bottom-right-radius', options),
-      createRule(/^rounded-t-([\.\d]+)$/, ['border-top-left-radius', 'border-top-right-radius'], options),
-      createRule(/^rounded-l-([\.\d]+)$/, ['border-top-left-radius', 'border-bottom-left-radius'], options),
-      createRule(/^rounded-r-([\.\d]+)$/, ['border-top-right-radius', 'border-bottom-right-radius'], options),
-      createRule(/^rounded-b-([\.\d]+)$/, ['border-bottom-left-radius', 'border-bottom-right-radius'], options),
+      createRule(/^rounded-([\.\d]+)$/, 'border-radius', presetOptions),
+      createRule(/^rounded-tl-([\.\d]+)$/, 'border-top-left-radius', presetOptions),
+      createRule(/^rounded-tr-([\.\d]+)$/, 'border-top-right-radius', presetOptions),
+      createRule(/^rounded-bl-([\.\d]+)$/, 'border-bottom-left-radius', presetOptions),
+      createRule(/^rounded-br-([\.\d]+)$/, 'border-bottom-right-radius', presetOptions),
+      createRule(/^rounded-t-([\.\d]+)$/, ['border-top-left-radius', 'border-top-right-radius'], presetOptions),
+      createRule(/^rounded-l-([\.\d]+)$/, ['border-top-left-radius', 'border-bottom-left-radius'], presetOptions),
+      createRule(/^rounded-r-([\.\d]+)$/, ['border-top-right-radius', 'border-bottom-right-radius'], presetOptions),
+      createRule(/^rounded-b-([\.\d]+)$/, ['border-bottom-left-radius', 'border-bottom-right-radius'], presetOptions),
 
       //postisitons
-      createRule(/^top-([\.\d]+)$/, 'top', options),
-      createRule(/^left-([\.\d]+)$/, 'left', options),
-      createRule(/^bottom-([\.\d]+)$/, 'bottom', options),
-      createRule(/^right-([\.\d]+)$/, 'right', options),
+      createRule(/^top-([\.\d]+)$/, 'top', presetOptions),
+      createRule(/^left-([\.\d]+)$/, 'left', presetOptions),
+      createRule(/^bottom-([\.\d]+)$/, 'bottom', presetOptions),
+      createRule(/^right-([\.\d]+)$/, 'right', presetOptions),
 
       //margins
-      createRule(/^m-([\.\d]+)$/, 'margin', options),
-      createRule(/^mt-([\.\d]+)$/, 'margin-top', options),
-      createRule(/^ml-([\.\d]+)$/, 'margin-left', options),
-      createRule(/^mr-([\.\d]+)$/, 'margin-right', options),
-      createRule(/^mb-([\.\d]+)$/, 'margin-bottom', options),
-      createRule(/^mx-([\.\d]+)$/, ['margin-left', 'margin-right'], options),
-      createRule(/^my-([\.\d]+)$/, ['margin-top', 'margin-bottom'], options),
+      createRule(/^m-([\.\d]+)$/, 'margin', presetOptions),
+      createRule(/^mt-([\.\d]+)$/, 'margin-top', presetOptions),
+      createRule(/^ml-([\.\d]+)$/, 'margin-left', presetOptions),
+      createRule(/^mr-([\.\d]+)$/, 'margin-right', presetOptions),
+      createRule(/^mb-([\.\d]+)$/, 'margin-bottom', presetOptions),
+      createRule(/^mx-([\.\d]+)$/, ['margin-left', 'margin-right'], presetOptions),
+      createRule(/^my-([\.\d]+)$/, ['margin-top', 'margin-bottom'], presetOptions),
 
       //paddings
-      createRule(/^p-([\.\d]+)$/, 'padding', options),
-      createRule(/^pt-([\.\d]+)$/, 'padding-top', options),
-      createRule(/^pl-([\.\d]+)$/, 'padding-left', options),
-      createRule(/^pr-([\.\d]+)$/, 'padding-right', options),
-      createRule(/^pb-([\.\d]+)$/, 'padding-bottom', options),
-      createRule(/^px-([\.\d]+)$/, ['padding-left', 'padding-right'], options),
-      createRule(/^py-([\.\d]+)$/, ['padding-top', 'padding-bottom'], options),
+      createRule(/^p-([\.\d]+)$/, 'padding', presetOptions),
+      createRule(/^pt-([\.\d]+)$/, 'padding-top', presetOptions),
+      createRule(/^pl-([\.\d]+)$/, 'padding-left', presetOptions),
+      createRule(/^pr-([\.\d]+)$/, 'padding-right', presetOptions),
+      createRule(/^pb-([\.\d]+)$/, 'padding-bottom', presetOptions),
+      createRule(/^px-([\.\d]+)$/, ['padding-left', 'padding-right'], presetOptions),
+      createRule(/^py-([\.\d]+)$/, ['padding-top', 'padding-bottom'], presetOptions),
     ],
   }
 }
