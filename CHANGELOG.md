@@ -1,5 +1,7 @@
 # Changelog
 
+## [1.0.2](https://github.com/oswaldohuillca/unocss-preset-calc/compare/1.0.1...1.0.2) (2025-01-21)
+
 ## [1.0.1](https://github.com/oswaldohuillca/unocss-preset-calc/compare/0.0.7...1.0.1) (2025-01-21)
 
 ## [0.0.7](https://github.com/oswaldohuillca/unocss-preset-calc/compare/0.0.6...0.0.7) (2024-09-07)
