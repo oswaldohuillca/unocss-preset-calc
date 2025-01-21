@@ -19,13 +19,13 @@ unocss-preset-calc is a [UnoCSS](https://unocss.dev/) plugin for working with th
 ```css
 /* css output */
 .w-256 {
-  width: calc(256 * clamp(0px,100vw,1920px) / var(--width-screen));
+  width: calc(256 * clamp(0px, 100vw, 1920px) / var(--width-screen));
 }
 .h-322 {
-  height: calc(322 * clamp(0px,100vw,1920px) / var(--width-screen));
+  height: calc(322 * clamp(0px, 100vw, 1920px) / var(--width-screen));
 }
 .rounded-21 {
-  border-radius: calc(21 * clamp(0px,100vw,1920px) / var(--width-screen));
+  border-radius: calc(21 * clamp(0px, 100vw, 1920px) / var(--width-screen));
 }
 ```
 
@@ -39,39 +39,58 @@ pnpm add unocss-preset-calc -D # with pnpm
 
 ```typescript
 // unocss.config.js
-import { presetUno, defineConfig } from 'unocss'
-import { presetCalc } from 'unocss-preset-calc'
+import { presetUno, defineConfig } from "unocss";
+import { presetCalc } from "unocss-preset-calc";
 
 export default defineConfig({
   presets: [
     presetUno(),
-    presetCalc({ /** options */}),
+    presetCalc({
+      /** options */
+    }),
   ],
-})
+});
 ```
 
 ## Preset Options
+
 ```typescript
 interface Options {
   /**
    * @default 0
    */
-  min?: number
+  min?: number;
   /**
    * @default 1920
    */
-  max?: number
+  max?: number;
   /**
    * @default '--width-screen'
    */
-  CSSglobalVar?: string
+  CSSglobalVar?: string;
+
   /**
-  * @default 375
-  */
-  mobileBreakpoint?: number
+   * @default 375
+   */
+  mobileWidth?: number;
+
   /**
-  * @default 768
-  */
-  desktopBreakpoint?: number
+   * @default 768
+   */
+  desktopWidth?: number;
+
+  /**
+   * @default {}
+   */
+  container: {
+    padding?: {
+      DEFAULT?: string;
+      sm?: number;
+      md?: number;
+      lg?: number;
+      xl?: number;
+      "2xl"?: number;
+    };
+  };
 }
 ```
