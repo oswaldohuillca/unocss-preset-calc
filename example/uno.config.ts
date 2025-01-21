@@ -6,6 +6,15 @@ export default defineConfig({
   // ...UnoCSS options
   presets: [
     presetUno(),
-    presetCalc()
-  ]
+    presetCalc({
+      max: 1200,
+      container: {
+        padding: {
+          DEFAULT: '1rem',
+          md: 50,
+          lg: 100
+        }
+      }
+    })
+  ],
 })

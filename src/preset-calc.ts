@@ -17,19 +17,33 @@ interface Options {
   /**
    * @default 375
    */
-  mobileBreakpoint?: number
+  mobileWidth?: number
 
   /**
   * @default 768
   */
-  desktopBreakpoint?: number
+  desktopWidth?: number
+
+  /**
+   * @default {}
+   */
+  container: {
+    padding?: {
+      DEFAULT?: string
+      sm?: number
+      md?: number
+      lg?: number
+      xl?: number
+      '2xl'?: number
+    }
+  }
 }
 
-export const calculate = (value: string, options: Options): string => {
+export const calculate = (value: number, options: Options): string => {
   return `calc(${value} * clamp(${options.min}px,100vw,${options.max}px) / var(${options.CSSglobalVar}))`
 }
 
-const setProperties = (value: string, properties: string | string[], options: Options) => {
+const setProperties = (value: number, properties: string | string[], options: Options) => {
   if (Array.isArray(properties)) {
     return properties.map(item => ({ [item]: calculate(value, options) }))
   }
@@ -40,15 +54,21 @@ const setProperties = (value: string, properties: string | string[], options: Op
 }
 
 export const createRule = (test: RegExp, properties: string | string[], options: Options): Rule => {
-  return [test, ([_, num]) => setProperties(num, properties, options)]
+  return [test, ([_, num]) => setProperties(Number(num), properties, options)]
 }
 
 export const options: Options = {
   CSSglobalVar: '--width-screen',
   min: 0,
   max: 1920,
-  mobileBreakpoint: 375,
-  desktopBreakpoint: 768
+  mobileWidth: 375,
+  desktopWidth: 768,
+  container: {
+    padding: {
+      DEFAULT: '1rem',
+      md: 50
+    }
+  },
 }
 
 export const presetCalc = (defaultValues?: Options): Preset => {
@@ -62,13 +82,15 @@ export const presetCalc = (defaultValues?: Options): Preset => {
     preflights: [
       {
         getCSS: () => {
+          const { CSSglobalVar, mobileWidth, desktopWidth, max } = presetOptions
+
           return `
             :root {
-              ${options.CSSglobalVar}: ${options.mobileBreakpoint};
+              ${CSSglobalVar}: ${mobileWidth};
             }
-            @media (width >=${options.desktopBreakpoint}px) {
+            @media (width >= ${desktopWidth}px) {
               :root {
-                ${options.CSSglobalVar}: ${options.max};
+                ${CSSglobalVar}: ${max};
               }
             }
           `
@@ -138,5 +160,29 @@ export const presetCalc = (defaultValues?: Options): Preset => {
       createRule(/^px-([\.\d]+)$/, ['padding-left', 'padding-right'], presetOptions),
       createRule(/^py-([\.\d]+)$/, ['padding-top', 'padding-bottom'], presetOptions),
     ],
+    extendTheme: (theme: Record<string, any>) => {
+      const { container } = presetOptions
+      return {
+        ...theme,
+        container: {
+          ...theme.container,
+          padding: {
+            ...(theme.container?.padding && { ...theme.container.padding}),
+            ...(container.padding.DEFAULT && {DEFAULT: container.padding.DEFAULT}),
+            ...(container.padding.sm && {sm: calculate(container.padding.sm, presetOptions)}),
+            ...(container.padding.md && {md: calculate(container.padding.md, presetOptions)}),
+            ...(container.padding.lg && {lg: calculate(container.padding.lg, presetOptions)}),
+            ...(container.padding.xl && {xl: calculate(container.padding.xl, presetOptions)}),
+            ...(container.padding['2xl'] && {'2xl': calculate(container.padding['2xl'], presetOptions)})
+          },
+          maxWidth: {
+            ...(theme.container?.maxWidth && { ...theme.container.maxWidth }),
+            md: '100%',
+            '2xl': `${presetOptions.max}px`,
+          },
+          center: true
+        }
+      }
+    }
   }
 }
