@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/oswaldohuillca/unocss-preset-calc/compare/1.0.2...1.1.0) (2025-07-11)
+
+
+### Features
+
+* enhance calc preset with improved options and validation ([c4faea9](https://github.com/oswaldohuillca/unocss-preset-calc/commit/c4faea9b304afed1d5ae627c17192eb633c06ab5))
+
 ## [1.0.2](https://github.com/oswaldohuillca/unocss-preset-calc/compare/1.0.1...1.0.2) (2025-01-21)
 
 ## [1.0.1](https://github.com/oswaldohuillca/unocss-preset-calc/compare/0.0.7...1.0.1) (2025-01-21)

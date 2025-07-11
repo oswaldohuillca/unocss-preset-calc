@@ -1,6 +1,6 @@
 {
   "name": "unocss-preset-calc",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "homepage": "https://github.com/oswaldohuillca/unocss-preset-calc",
   "description": "This is a plugin to work with css calc",
   "main": "./dist/preset-calc.js",
