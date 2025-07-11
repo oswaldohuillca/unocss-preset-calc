@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "typescript": "^5.2.2",
-    "unocss": "^0.59.4",
-    "vite": "^5.2.0"
+    "unocss": "^66.3.3",
+    "vite": "^7.0.4"
   }
 }
