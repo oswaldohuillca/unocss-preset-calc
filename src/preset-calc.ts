@@ -1,21 +1,4 @@
-import type { Preset, Rule } from 'unocss'
-
-/**
- * Theme container configuration structure
- */
-interface ThemeContainer {
-  padding?: Record<string, string | number>
-  maxWidth?: Record<string, string | number>
-  center?: boolean
-}
-
-/**
- * UnoCSS theme structure
- */
-interface Theme {
-  container?: ThemeContainer
-  [key: string]: unknown
-}
+import type { Preset, Rule, PresetUnoTheme as Theme } from 'unocss'
 
 /**
  * Configuration options for the calc preset
@@ -122,6 +105,7 @@ export const options: Options = DEFAULT_OPTIONS
  * @param defaultValues - Optional configuration to override defaults
  * @returns UnoCSS preset object
  */
+
 export const presetCalc = (defaultValues?: Partial<Options>): Preset => {
   const presetOptions: Options = {
     ...DEFAULT_OPTIONS,
